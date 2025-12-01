@@ -1,0 +1,30 @@
+<div class="card h-100 shadow-sm text-center">
+    <img [src]="pokemon.img" class="card-img-top" [alt]="pokemon.name">
+    <div class="card-body">
+        <h5 class="card-title mb-0">
+            {{ pokemon.name }}
+        </h5>
+        <small class="text-muted">#{{ pokemon.num }}</small>
+
+        <p class="card-text mt-2">
+            <small>{{ pokemon.height }} | {{ pokemon.weight }}</small>
+        </p>
+
+        <div class="mb-2">
+            @for (type of pokemon.type; track $index) {
+            <span class="badge">
+                {{ type }}
+            </span>
+            }
+        </div>
+
+    </div>
+    <div class="card-footer bg-white border-0 pb-3">
+        <small class="text-muted">Gyengeségek:</small><br>
+        @for (weakness of pokemon.weaknesses; track $index) {
+        <span class="badge bg-danger">
+            {{ weakness }}
+        </span>
+        }
+    </div>
+</div>

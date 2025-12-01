@@ -1,0 +1,49 @@
+<h1 class="text-center">Angular Pokédex</h1>
+<h3 class="text-center">Böngéssz és szűrj a Pokémonok között</h3>
+
+<div class="filter">
+  <div class="row">
+    <div class="col-md-3">
+      <label class="form-label">Név</label>
+      <input type="text" class="form-control" placeholder="Pl. Pikachu"
+             (input)="setFilteredPokemons()" [(ngModel)]="filter.name" name="name">             
+    </div>
+
+    <div class="col-md-3">
+      <label class="form-label">Típus</label>
+      <select type="text" class="form-select" (input)="setFilteredPokemons()" [(ngModel)]="filter.type" name="type">             
+        <option value="">-- Minden típus --</option>
+        @for (type of types; track $index) {
+          <option [value]="type">{{type}}</option>
+        }
+      </select>
+    </div>
+
+    <div class="col-md-2">
+      <label class="form-label">Gyengeség</label>
+      <select type="text" class="form-select" (input)="setFilteredPokemons()" [(ngModel)]="filter.weakness" name="weakness">             
+        <option value="">-- Minden gyengeség --</option>
+        @for (w of weaknesses; track $index) {
+          <option [value]="w">{{w}}</option>
+        }
+      </select>
+    </div>
+
+    <div class="col-md-2">
+      <label class="form-label">Tojás</label>
+      <select type="text" class="form-select" (input)="setFilteredPokemons()" [(ngModel)]="filter.egg" name="egg">             
+        <option value="">-- Minden tojás --</option>
+        @for (egg of eggs; track $index) {
+          <option [value]="egg">{{egg}}</option>
+        }
+      </select>
+    </div>
+    <button class="col-md-2 btn btn-outline-secondary">Szűrők törlése</button>
+  </div>
+</div>
+
+<div class="pokemons row">
+  @for (pokemon of filteredPokemons; track $index) {
+    <app-pokemon-card [pokemon]="pokemon" class="col-md-3"></app-pokemon-card>
+  }
+</div>

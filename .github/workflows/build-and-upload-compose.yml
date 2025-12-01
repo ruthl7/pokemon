@@ -1,0 +1,33 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # lehetővé teszi, hogy "kézzel" elindítsam a folyamatot
+  workflow_dispatch:
+
+  #időzített indítás
+  #schedule:
+  #  - cron: '04 10 * * *'
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: genarate image tag
+      run: |
+        echo "IMAGE_TAG=$(date +%s)" >> $GITHUB_ENV
+
+
+    - uses: actions/checkout@v4
+    - name: Build the Docker image
+      run: |
+        docker build . --file Dockerfile --tag ghcr.io/ruthl7/pokemon:$IMAGE_TAG
+        docker login ghcr.io -u ruthl7 -p ${{ secrets.GHCR_TOKEN }}
+        docker push ghcr.io/ruthl7/pokemon:$IMAGE_TAG

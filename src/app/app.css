@@ -1,0 +1,12 @@
+.filter {
+    max-width: 1024px;
+    margin: 12px auto;
+    border: 1px solid #555;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.filter button {
+    height: 2.2rem;
+    margin-top: 2rem;
+}
