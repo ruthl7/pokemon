@@ -6,4 +6,4 @@ RUN npm i
 RUN npm run build
 
 FROM nginx AS final
-COPY --from=build /home/node/app/dist/Kiosk/browser /usr/share/nginx/html
+COPY --from=build /home/node/app/dist/pokemon/browser /usr/share/nginx/html
